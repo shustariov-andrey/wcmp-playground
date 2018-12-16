@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" name="viewport">
+    <style>
+        html {
+            font-size: 22px;
+        }
+
+        body {
+            margin: 20% auto 0;
+            width: 600px;
+            font-family: monospace;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+    </style>
+    <title>Playground</title>
+    <script src="vanilla/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+</head>
+<body>
+<section>
+    <span>Vanilla: </span>
+    <erb-pure-typeahead id="vanilla"></erb-pure-typeahead>
+</section>
+<section>
+    <span>Stencil: </span>
+    <erb-st-typeahead id="stencil"></erb-st-typeahead>
+</section>
+
+<script src="vanilla/src/lib/typeahead/typeahead.component.js" type="module"></script>
+<script src="stnl/dist/erb.js"></script>
+
+<script>
+    const getItemsCallback = (token) => fetch('/assets/states.json')
+        .then(response => response.json())
+        .then(states => states.filter(s => s.label.toLowerCase().startsWith(token.toLowerCase())));
+
+    const vanillaEl = document.querySelector('#vanilla');
+    vanillaEl.getItemsCallback = getItemsCallback;
+    vanillaEl.addEventListener('typeahead-changed', e => console.log('Vanilla changed: ', e.detail.value));
+
+    const stencilEl = document.querySelector('#stencil');
+    stencilEl.getItemsCallback = getItemsCallback;
+    stencilEl.addEventListener('typeahead-changed', e => console.log('Stencil changed: ', e.detail.value));
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+.container {
+  position: relative;
+  display: inline-block;
+
+  --erb-typeahead-border-color: #e3e3e3;
+  --erb-typeahead-option-hover-color: #cddcea;
+}
+
+input {
+  border-color: var(--erb-typeahead-border-color);
+  border-width: 1px;
+  padding: 0 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  min-height: 1rem;
+  border: 1px solid var(--erb-typeahead-border-color);
+  max-height: 400px;
+  overflow: auto;
+  z-index: 10;
+  background: #fff;
+}
+
+.dropdown:not(.opened) {
+  display: none;
+}
+
+.dropdown div {
+  line-height: 1.5rem;
+  padding: 0 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown div:hover {
+  background-color: var(--erb-typeahead-option-hover-color);
+}
