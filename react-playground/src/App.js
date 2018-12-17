@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './lib/typeahead/typeahead.component';
 
 class App extends Component {
-  render() {
+
+    constructor(props) {
+        super(props);
+        this.compRef = React.createRef();
+    }
+
+
+    componentDidMount() {
+        this.compRef.current.getItemsCallback = () => Promise.resolve([{
+            key: 'CSS',
+            label: 'CSS'
+        }])
+    }
+
+    render() {
     return (
       <div className="App">
         <header className="App-header">
@@ -19,6 +34,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <erb-pure-typeahead ref={this.compRef}></erb-pure-typeahead>
         </header>
       </div>
     );

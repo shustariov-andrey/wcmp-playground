@@ -1,8 +1,4 @@
 export class TypeaheadComponent extends HTMLElement {
-    static get observedAttributes() {
-        return ['max-items']
-    }
-
     constructor() {
         super();
         const shadow = this.attachShadow({mode: 'closed'});
@@ -14,17 +10,9 @@ export class TypeaheadComponent extends HTMLElement {
         this.dropdown.addEventListener('click', e => this.onItemSelect(e.target))
     }
 
-    attributeChangedCallback(attributeName, oldValue, newValue) {
-        if (attributeName === 'max-items') {
-            console.log(oldValue, newValue);
-            this.maxItems = parseInt(newValue, 10);
-        }
-    }
-
     onInput(event) {
         const v = event.target.value;
         this.getItemsCallback(v)
-            .then(items => items.filter((x, index) => index < this.maxItems))
             .then(items => {
                 const options = document.createDocumentFragment();
                 items.forEach(item => {
