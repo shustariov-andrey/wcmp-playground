@@ -19,6 +19,7 @@
  */
 
 /** IE9, IE10 and IE11 requires all of the following polyfills. **/
+import 'core-js';
 // import 'core-js/es6/symbol';
 // import 'core-js/es6/object';
 // import 'core-js/es6/function';
@@ -78,11 +79,15 @@
  *
  */
 
+import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter';
+import '@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf';
+// import '@webcomponents/webcomponentsjs/bundles/webcomponents-sd';
+// import '@webcomponents/webcomponentsjs/bundles/webcomponents-ce';
+
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
-
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
